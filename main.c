@@ -5,19 +5,20 @@
 void led(char x, char y, char z);
 void acer(char a);
 void all(char e);
-
+void linez(char y, char x);
+void linex(char y, char x);
 
 int main(void)
 {
 		while(1)
 		{
-			all(1);
+			linex(5,3);
 		}
 	
 	return 0;
 }//end of main
 
-void led(char x, char y, char z)
+void led(char y, char x, char z)
 {	
 
 	DDRA = 0x00;
@@ -1025,6 +1026,8 @@ void led(char x, char y, char z)
 	}
 }
 
+
+
 void acer(char a)
 {
 
@@ -1091,5 +1094,456 @@ void all(char e)
 				acer(4);
 				acer(5);
 			break;
+	}
+}
+
+void linez(char y, char x)
+{	
+	switch(y)
+	{
+		case 1:	switch(x)
+				{
+					case 1:	led(1,1,1);
+							led(1,1,2);
+							led(1,1,3);
+							led(1,1,4);
+							led(1,1,5);
+							
+						break;
+					
+					case 2:	led(1,2,1);
+							led(1,2,2);
+							led(1,2,3);
+							led(1,2,4);
+							led(1,2,5);
+						break;
+					
+					case 3:	led(1,3,1);
+							led(1,3,2);
+							led(1,3,3);
+							led(1,3,4);
+							led(1,3,5);
+						break;
+					
+					case 4:	led(1,4,1);
+							led(1,4,2);
+							led(1,4,3);
+							led(1,4,4);
+							led(1,4,5);
+						break;
+					
+					case 5:	led(1,5,1);
+							led(1,5,2);
+							led(1,5,3);
+							led(1,5,4);
+							led(1,5,5);
+						break;
+						
+				}
+				
+			break;
+		
+		case 2:	switch(x)
+				{
+					case 1:	led(2,1,1);
+							led(2,1,2);
+							led(2,1,3);
+							led(2,1,4);
+							led(2,1,5);
+						break;
+					
+					case 2:	led(2,2,1);
+							led(2,2,2);
+							led(2,2,3);
+							led(2,2,4);
+							led(2,2,5);
+						break;
+					
+					case 3:	led(2,3,1);
+							led(2,3,2);
+							led(2,3,3);
+							led(2,3,4);
+							led(2,3,5);
+						break;
+					
+					case 4:	led(2,4,1);
+							led(2,4,2);
+							led(2,4,3);
+							led(2,4,4);
+							led(2,4,5);
+						break;
+					
+					case 5:	led(2,5,1);
+							led(2,5,2);
+							led(2,5,3);
+							led(2,5,4);
+							led(2,5,5);
+						break;
+						
+				}
+				
+			break;
+		
+		case 3:	switch(x)
+				{
+					case 1:	led(3,1,1);
+							led(3,1,2);
+							led(3,1,3);
+							led(3,1,4);
+							led(3,1,5);
+						break;
+					
+					case 2:	led(3,2,1);
+							led(3,2,2);
+							led(3,2,3);
+							led(3,2,4);
+							led(3,2,5);
+						break;
+					
+					case 3:	led(3,3,1);
+							led(3,3,2);
+							led(3,3,3);
+							led(3,3,4);
+							led(3,3,5);
+						break;
+					
+					case 4:	led(3,4,1);
+							led(3,4,2);
+							led(3,4,3);
+							led(3,4,4);
+							led(3,4,5);
+						break;
+					
+					case 5:	led(3,5,1);
+							led(3,5,2);
+							led(3,5,3);
+							led(3,5,4);
+							led(3,5,5);
+						break;
+						
+				}
+				
+			break;
+		
+		case 4:	switch(x)
+				{
+					case 1:	led(4,1,1);
+							led(4,1,2);
+							led(4,1,3);
+							led(4,1,4);
+							led(4,1,5);
+						break;
+					
+					case 2:	led(4,2,1);
+							led(4,2,2);
+							led(4,2,3);
+							led(4,2,4);
+							led(4,2,5);
+						break;
+					
+					case 3:	led(4,3,1);
+							led(4,3,2);
+							led(4,3,3);
+							led(4,3,4);
+							led(4,3,5);
+						break;
+					
+					case 4:	led(4,4,1);
+							led(4,4,2);
+							led(4,4,3);
+							led(4,4,4);
+							led(4,4,5);
+						break;
+					
+					case 5:	led(4,5,1);
+							led(4,5,2);
+							led(4,5,3);
+							led(4,5,4);
+							led(4,5,5);
+						break;
+						
+				}
+				
+			break;
+		
+		case 5:	switch(x)
+				{
+					case 1:	led(5,1,1);
+							led(5,1,2);
+							led(5,1,3);
+							led(5,1,4);
+							led(5,1,5);
+						break;
+					
+					case 2:	led(5,2,1);
+							led(5,2,2);
+							led(5,2,3);
+							led(5,2,4);
+							led(5,2,5);
+						break;
+					
+					case 3:	led(5,3,1);
+							led(5,3,2);
+							led(5,3,3);
+							led(5,3,4);
+							led(5,3,5);
+						break;
+					
+					case 4:	led(5,4,1);
+							led(5,4,2);
+							led(5,4,3);
+							led(5,4,4);
+							led(5,4,5);
+						break;
+					
+					case 5:	led(5,5,1);
+							led(5,5,2);
+							led(5,5,3);
+							led(5,5,4);
+							led(5,5,5);
+						break;
+						
+				}
+				
+			break;
+					
+	}
+}
+
+void linex(char y, char x)
+{	
+
+	DDRA = 0x00;
+	DDRB = 0x00; 
+	DDRC = 0x00;
+	DDRD = 0x00;
+	
+	switch(y)
+	{
+		case 1:	switch(x)
+				{
+					case 1:	DDRA = 0xFF;
+							DDRD = 0xFF;
+							
+							PORTA = 0x01;
+							PORTD = 0x00;
+							
+						break;
+					
+					case 2:	DDRA = 0xFF;
+							DDRD = 0xFF;
+							
+							PORTA = 0x02;
+							PORTD = 0x00;
+							
+						break;
+					
+					case 3:	DDRA = 0xFF;
+							DDRD = 0xFF;
+							
+							PORTA = 0x04;
+							PORTD = 0x00;
+							
+						break;
+					
+					case 4:	DDRA = 0xFF;
+							DDRD = 0xFF;
+							
+							PORTA = 0x08;
+							PORTD = 0x00;
+							
+						break;
+					
+					case 5:	DDRA = 0xFF;
+							DDRD = 0xFF;
+							
+							PORTA = 0x10;
+							PORTD = 0x00;
+							
+						break;
+						
+				}
+				
+			break;
+		
+		case 2:	switch(x)
+				{
+					case 1:	led(2,1,1);
+							led(2,2,1);
+							led(2,3,1);
+							led(2,4,1);
+							led(2,5,1);
+							
+						break;
+					
+					case 2:	led(2,1,2);
+							led(2,2,2);
+							led(2,3,2);
+							led(2,4,2);
+							led(2,5,2);
+							
+						break;
+					
+					case 3:	led(2,1,3);
+							led(2,2,3);
+							led(2,3,3);
+							led(2,4,3);
+							led(2,5,3);
+							
+						break;
+					
+					case 4:	led(2,1,4);
+							led(2,2,4);
+							led(2,3,4);
+							led(2,4,4);
+							led(2,5,4);
+							
+						break;
+					
+					case 5:	led(2,1,5);
+							led(2,2,5);
+							led(2,3,5);
+							led(2,4,5);
+							led(2,5,5);
+							
+						break;
+						
+				}
+				
+			break;
+		
+		case 3:	switch(x)
+				{
+					case 1:	DDRA = 0xFF;
+							DDRC = 0xFF;
+							
+							PORTA = 0x01;
+							PORTC = 0x00;
+							
+						break;
+					
+					case 2:	DDRA = 0xFF;
+							DDRC = 0xFF;
+							
+							PORTA = 0x02;
+							PORTC = 0x00;
+							
+						break;
+					
+					case 3:	DDRA = 0xFF;
+							DDRC = 0xFF;
+							
+							PORTA = 0x04;
+							PORTC = 0x00;
+							
+						break;
+					
+					case 4:	DDRA = 0xFF;
+							DDRC = 0xFF;
+							
+							PORTA = 0x08;
+							PORTC = 0x00;
+							
+						break;
+					
+					case 5:	DDRA = 0xFF;
+							DDRC = 0xFF;
+							
+							PORTA = 0x10;
+							PORTC = 0x00;
+							
+						break;
+						
+				}
+				
+			break;
+		
+		case 4:	switch(x)
+				{
+					case 1:	led(4,1,1);
+							led(4,2,1);
+							led(4,3,1);
+							led(4,4,1);
+							led(4,5,1);
+						break;
+					
+					case 2:	led(4,1,2);
+							led(4,2,2);
+							led(4,3,2);
+							led(4,4,2);
+							led(4,5,2);
+						break;
+					
+					case 3:	led(4,1,3);
+							led(4,2,3);
+							led(4,3,3);
+							led(4,4,3);
+							led(4,5,3);
+						break;
+					
+					case 4:	led(4,1,4);
+							led(4,2,4);
+							led(4,3,4);
+							led(4,4,4);
+							led(4,5,4);
+						break;
+					
+					case 5:	led(4,1,5);
+							led(4,2,5);
+							led(4,3,5);
+							led(4,4,5);
+							led(4,5,5);
+						break;
+						
+				}
+				
+			break;
+		
+		case 5:	switch(x)
+				{
+					case 1:	DDRA = 0xFF;
+							DDRB = 0xFF;
+							
+							PORTA = 0x01;
+							PORTB = 0x00;
+							
+						break;
+					
+					case 2:	DDRA = 0xFF;
+							DDRB = 0xFF;
+							
+							PORTA = 0x02;
+							PORTB = 0x00;
+							
+						break;
+					
+					case 3:	DDRA = 0xFF;
+							DDRB = 0xFF;
+							
+							PORTA = 0x04;
+							PORTB = 0x00;
+							
+						break;
+					
+					case 4:	DDRA = 0xFF;
+							DDRB = 0xFF;
+							
+							PORTA = 0x08;
+							PORTB = 0x00;
+							
+						break;
+					
+					case 5:	DDRA = 0xFF;
+							DDRB = 0xFF;
+							
+							PORTA = 0x10;
+							PORTB = 0x00;
+							
+						break;
+						
+				}
+				
+			break;
+					
 	}
 }
