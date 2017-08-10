@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <avr/io.h>
 #include <util/delay.h>
+#include <avr/interrupt.h>
 
 
 void led(char x, char y, char z);
@@ -11,147 +12,130 @@ void linex(char y, char x);
 void liney(char z, char x);
 void rundlauf(long w);
 void lift(long y);
-void cube(char s)
+void cube(char s);
+void return1(char z);
+void downstep(char z);
+void abbau(char z);
+void tiltacer(void);
+
+#ifndef F_CPU
+#define F_CPU    20000000
+#endif		
+			
+
+#define IRQS_PER_SECOND    1000						// Fuer optimale Genauigkeit muss
+													// IRQS_PER_SECOND ein Teiler von F_CPU sein
+													// und IRQS_PER_SECOND ein Vielfaches von 100.
+													// Ausserdem muss gelten F_CPU / IRQS_PER_SECOND <= 65536
+													// 500 µs //
+
+#define IRQS_PER_10MS     (IRQS_PER_SECOND / 1000)	// Anzahl IRQs pro 10 Millisekunden
+
+// Gültigkeitsprüfung.
+// Bei ungeeigneten Werten gibt es einen Compilerfehler
+#if (F_CPU/IRQS_PER_SECOND > 65536) || (IRQS_PER_10MS < 1) || (IRQS_PER_10MS > 255)
+#   error Diese Werte fuer F_CPU und IRQS_PER_SECOND
+#   error sind ausserhalb des gueltigen Bereichs!
+#endif
+
+uint8_t ms, ms10, ms100, sec ;
+char t;
+
+ISR(TIMER1_COMPA_vect)
 {
-	long op = 0;
-	long x;
+  static uint8_t interrupt_num_10ms;				// zaehlvariable deklarieren
+      
+    if (++interrupt_num_10ms == IRQS_PER_10MS)    	// interrupt_num_10ms erhöhen und mit Maximalwert vergleichen
+    {
+        interrupt_num_10ms = 0;						// interrupt_num_10ms zurücksetzen
+		ms++;										// jede millisekund
+		
+    }
 	
-	switch(s)
+	if(ms==10)										// Alle 10 ms
 	{
-		case 1:	x = 20000;
-			break;
-			
-		case 2:	x = 4500;
-			break;
-			
-		case 3:	x = 2000;
-			break;
-			
-		case 4:	x = 1100;
-			break;
-			
-		case 5:	x = 700;
-			break;
-			
-			
+		ms = 0;
+		ms10++;
 	}
 	
-	for(op = -40000; op < x; op++)
-		{
-			led(5,3,3);
-		}
-		
-	for(op = -5000; op < x; op++)
-		{
-			led(5,3,3);
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-		}
-		
-	for(op = -500; op < x; op++)
-		{
-			led(5,3,3);
-			
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-		}
-		
-	for(op = -400; op < x; op++)
-		{
-			led(5,3,3);
-			
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-			
-			led(2,2,3);
-			led(2,4,3);
-			led(2,3,4);
-			led(2,3,2);
-			led(2,3,3);
-		}
-		
-			for(op = 0; op < x; op++)
-		{
-			led(5,3,3);
-			
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-			
-			led(2,2,3);
-			led(2,4,3);
-			led(2,3,4);
-			led(2,3,2);
-			led(2,3,3);
-			
-			led(1,3,3);
-		}
+	if(ms10==10)
+	{
+		ms10 = 0;
+		ms100++;
+				t++;
+
+	}
 	
-
-}
-
+	if(ms100==10)
+	{
+		ms100 = 0;
+		sec++;
+	}
+	
+	if(sec==100)
+	{
+		t = 0;
+		sec = 0;
+	}
+	
+}//End of ISR
 
 
 int main(void)
 {
-		while(1)
-		{
-			cube(5);
-		}
+
+	ms = 0;
+	ms10 = 0;
+	ms100 = 0;
+	sec = 0;
+	t = 0;
+		
+TCCR1A = 0;					// Timer1: keine PWM
+
+    // Timer1 ist Zähler: Clear Timer on Compare Match (CTC, Mode #4)
+    // Timer1 läuft mit vollem MCU-Takt: Prescale = 1
+#if defined (CTC1) && !defined (WGM12)
+   TCCR1B = (1 << CTC1)  | (1 << CS10);
+#elif !defined (CTC1) && defined (WGM12)
+   TCCR1B = (1 << WGM12) | (1 << CS10);
+#else
+#error Keine Ahnung!
+#endif
+
+    // OutputCompare für gewünschte Timer1 Frequenz
+    // TCNT1 zählt immer 0...OCR1A, 0...OCR1A, ... 
+    // Beim überlauf OCR1A -> OCR1A+1 wird TCNT1=0 gesetzt und im nächsten
+    // MCU-Takt eine IRQ erzeugt.
+    OCR1A = (unsigned short) ((unsigned long) F_CPU / IRQS_PER_SECOND-1);
+
+    // OutputCompareA-Interrupt für Timer1 aktivieren
+#if defined (TIMSK1)
+    TIMSK1 |= (1 << OCIE1A);
+#elif defined (TIMSK)
+    TIMSK  |= (1 << OCIE1A);
+#else
+#error Keine Ahnung!
+#endif
+	sei();
 	
+	while(1)
+	{
+		char u = 0;
+			
+		/*	lift(3);
+			return1(1);	
+			downstep(1);
+			
+			
+		for(u = 0; u < 3; u++)
+			{
+				rundlauf(2);
+			}
+			
+			abbau(1);		*/
+			t = 0;
+			tiltacer();
+	}
 	return 0;
 }//end of main
 
@@ -2148,4 +2132,382 @@ void lift(long y)
 
 
 	
+}
+void cube(char s)
+{
+	long op = 0;
+	long x;
+	
+	switch(s)
+	{
+		case 1:	x = 20000;
+			break;
+			
+		case 2:	x = 4500;
+			break;
+			
+		case 3:	x = 2000;
+			break;
+			
+		case 4:	x = 1100;
+			break;
+			
+		case 5:	x = 700;
+			break;
+			
+			
+	}
+	
+	for(op = -40000; op < x; op++)
+		{
+			led(5,3,3);
+		}
+		
+	for(op = -5000; op < x; op++)
+		{
+			led(5,3,3);
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+		}
+		
+	for(op = -500; op < x; op++)
+		{
+			led(5,3,3);
+			
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+		}
+		
+	for(op = -400; op < x; op++)
+		{
+			led(5,3,3);
+			
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+			
+			led(2,2,3);
+			led(2,4,3);
+			led(2,3,4);
+			led(2,3,2);
+			led(2,3,3);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(5,3,3);
+			
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+			
+			led(2,2,3);
+			led(2,4,3);
+			led(2,3,4);
+			led(2,3,2);
+			led(2,3,3);
+			
+			led(1,3,3);
+		}
+		
+	for(op = -400; op < x; op++)
+		{
+			
+			
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+			
+			led(2,2,3);
+			led(2,4,3);
+			led(2,3,4);
+			led(2,3,2);
+			led(2,3,3);
+			
+			led(1,3,3);
+		}
+	for(op = -500; op < x; op++)
+		{
+			
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+			
+			led(2,2,3);
+			led(2,4,3);
+			led(2,3,4);
+			led(2,3,2);
+			led(2,3,3);
+			
+			led(1,3,3);
+		}
+		
+	for(op = -5000; op < x; op++)
+		{
+			
+			led(2,2,3);
+			led(2,4,3);
+			led(2,3,4);
+			led(2,3,2);
+			led(2,3,3);
+			
+			led(1,3,3);
+		}
+		
+	for(op = -40000; op < x; op++)
+		{
+			led(1,3,3);
+		}
+
+}
+void return1(char z)
+{	
+	long op = 0;
+	long x = 30000;
+	
+	
+	
+	for(op = -70000; op < x; op++)
+		{
+			acer(5);
+		}
+		
+	for(op = 27000; op < x; op++)
+		{
+			led(5,1,1);
+			led(5,1,2);
+			led(5,1,3);
+			led(5,1,4);
+			led(5,2,1);
+			led(5,2,2);
+			led(5,2,3);
+			led(5,2,4);
+			led(5,3,1);
+			led(5,3,2);
+			led(5,3,3);
+			led(5,3,4);
+			led(5,4,1);
+			led(5,4,2);
+			led(5,4,3);
+			led(5,4,4);
+		}
+		
+	for(op = 25000; op < x; op++)
+		{
+			led(5,1,1);
+			led(5,1,2);
+			led(5,1,3);
+			led(5,2,1);
+			led(5,2,2);
+			led(5,2,3);
+			led(5,3,1);
+			led(5,3,2);
+			led(5,3,3);
+	
+		
+			
+			
+		}
+		
+	for(op = 11000; op < x; op++)
+		{
+			led(5,1,1);
+			led(5,1,2);
+			led(5,2,1);
+			led(5,2,2);
+		}
+		
+	for(op = -70000; op < x; op++)
+		{
+			led(5,1,1);
+		}
+
+}
+void downstep(char z)
+{
+	long op = 0;
+	long x = 16000;
+	
+	for(op = 0; op < x; op++)
+		{
+			led(5,1,1);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(5,1,1);
+			led(4,1,1);
+		}
+	
+	for(op = 0; op < x; op++)
+		{
+			led(5,1,1);
+			led(4,1,1);
+			led(3,1,1);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(5,1,1);
+			led(4,1,1);
+			led(3,1,1);
+			led(2,1,1);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			liney(1,1);
+		}
+}
+void abbau(char z)
+{
+	long op = 0;
+	long x = 16000;
+	
+	for(op = 0; op < x; op++)
+		{
+			liney(1,1);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(4,1,1);
+			led(3,1,1);
+			led(2,1,1);
+			led(1,1,1);
+		}
+	
+	for(op = 0; op < x; op++)
+		{
+			led(3,1,1);
+			led(2,1,1);
+			led(1,1,1);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(2,1,1);
+			led(1,1,1);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(1,1,1);
+		}
+}
+void tiltacer(void)
+{
+	while(t<3)
+	{
+		led(1,1,1);
+	}
+	
+	while(t<6)
+	{
+		led(2,1,1);
+		led(1,2,1);
+		led(1,1,2);
+	}
+	
+	while(t<9)
+	{
+		led(3,1,1);
+		led(1,3,1);
+		led(1,1,3);
+		led(2,1,2);
+		led(2,2,1);
+		led(1,2,2);
+	}
+	
+	while(t<12)
+	{
+		led(4,1,1);
+		led(1,4,1);
+		led(1,1,4);
+		led(3,1,2);
+		led(3,2,1);
+		led(2,2,2);
+	}
+			
+				
+			
 }
