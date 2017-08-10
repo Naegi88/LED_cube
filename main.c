@@ -18,7 +18,7 @@ void cube(char s)
 	
 	switch(s)
 	{
-		case 1:	x = 80000;
+		case 1:	x = 20000;
 			break;
 			
 		case 2:	x = 4500;
@@ -36,12 +36,12 @@ void cube(char s)
 			
 	}
 	
-	for(op = 0; op < x; op++)
+	for(op = -40000; op < x; op++)
 		{
 			led(5,3,3);
 		}
 		
-	for(op = 0; op < x; op++)
+	for(op = -5000; op < x; op++)
 		{
 			led(5,3,3);
 			led(4,2,3);
@@ -51,7 +51,7 @@ void cube(char s)
 			led(4,3,3);
 		}
 		
-	for(op = 0; op < x; op++)
+	for(op = -500; op < x; op++)
 		{
 			led(5,3,3);
 			
@@ -75,6 +75,70 @@ void cube(char s)
 			led(3,4,4);
 			led(3,4,2);
 		}
+		
+	for(op = -400; op < x; op++)
+		{
+			led(5,3,3);
+			
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+			
+			led(2,2,3);
+			led(2,4,3);
+			led(2,3,4);
+			led(2,3,2);
+			led(2,3,3);
+		}
+		
+			for(op = 0; op < x; op++)
+		{
+			led(5,3,3);
+			
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+			
+			led(2,2,3);
+			led(2,4,3);
+			led(2,3,4);
+			led(2,3,2);
+			led(2,3,3);
+			
+			led(1,3,3);
+		}
 	
 
 }
@@ -85,7 +149,7 @@ int main(void)
 {
 		while(1)
 		{
-			cube(4);
+			cube(5);
 		}
 	
 	return 0;
