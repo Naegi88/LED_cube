@@ -2,17 +2,90 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
+
 void led(char x, char y, char z);
 void acer(char a);
 void all(char e);
 void linez(char y, char x);
 void linex(char y, char x);
+void liney(char z, char x);
+void rundlauf(long w);
+void lift(long y);
+void cube(char s)
+{
+	long op = 0;
+	long x;
+	
+	switch(s)
+	{
+		case 1:	x = 80000;
+			break;
+			
+		case 2:	x = 4500;
+			break;
+			
+		case 3:	x = 2000;
+			break;
+			
+		case 4:	x = 1100;
+			break;
+			
+		case 5:	x = 700;
+			break;
+			
+			
+	}
+	
+	for(op = 0; op < x; op++)
+		{
+			led(5,3,3);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(5,3,3);
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+		}
+		
+	for(op = 0; op < x; op++)
+		{
+			led(5,3,3);
+			
+			led(4,2,3);
+			led(4,4,3);
+			led(4,3,4);
+			led(4,3,2);
+			led(4,3,3);
+			
+			led(3,1,3);
+			led(3,2,3);
+			led(3,3,3);
+			led(3,4,3);
+			led(3,5,3);
+			led(3,3,1);
+			led(3,3,2);
+			led(3,3,4);
+			led(3,3,5);
+			led(3,2,4);
+			led(3,2,2);
+			led(3,4,4);
+			led(3,4,2);
+		}
+	
+
+}
+
+
 
 int main(void)
 {
 		while(1)
 		{
-			linex(5,3);
+			cube(4);
 		}
 	
 	return 0;
@@ -28,7 +101,7 @@ void led(char y, char x, char z)
 	
 	
 	switch(y)
-	{
+{
 		case 1:	switch(x)
 				{
 					case 1:	switch(z)
@@ -830,38 +903,38 @@ void led(char y, char x, char z)
 				case 1:	switch(z)	
 							{
 								case 1:	DDRA |= (1<<PD0);
-										DDRB |= (1<<PD0);
+										DDRB |= (1<<PD4);
 											
 										PORTA |= (1<<PD0);
-										PORTB &= ~(1<<PD0);
+										PORTB &= ~(1<<PD4);
 									break;
 								
 								case 2:	DDRA |= (1<<PD1);
-										DDRB |= (1<<PD0);
+										DDRB |= (1<<PD4);
 											
 										PORTA |= (1<<PD1);
-										PORTB &= ~(1<<PD0);
+										PORTB &= ~(1<<PD4);
 									break;
 								
 								case 3:	DDRA |= (1<<PD2);
-										DDRB |= (1<<PD0);
+										DDRB |= (1<<PD4);
 											
 										PORTA |= (1<<PD2);
-										PORTB &= ~(1<<PD0);
+										PORTB &= ~(1<<PD4);
 									break;
 								
 								case 4:	DDRA |= (1<<PD3);
-										DDRB |= (1<<PD0);
+										DDRB |= (1<<PD4);
 											
 										PORTA |= (1<<PD3);
-										PORTB &= ~(1<<PD0);
+										PORTB &= ~(1<<PD4);
 									break;
 								
 								case 5:	DDRA |= (1<<PD4);
-										DDRB |= (1<<PD0);
+										DDRB |= (1<<PD4);
 											
 										PORTA |= (1<<PD4);
-										PORTB &= ~(1<<PD0);
+										PORTB &= ~(1<<PD4);
 									break;
 							}
 						break;
@@ -869,38 +942,38 @@ void led(char y, char x, char z)
 					case 2:	switch(z)
 							{
 								case 1:	DDRA |= (1<<PD0);
-										DDRB |= (1<<PD1);
+										DDRB |= (1<<PD3);
 											
 										PORTA |= (1<<PD0);
-										PORTB &= ~(1<<PD1);
+										PORTB &= ~(1<<PD3);
 									break;
 								
 								case 2:	DDRA |= (1<<PD1);
-										DDRB |= (1<<PD1);
+										DDRB |= (1<<PD3);
 											
 										PORTA |= (1<<PD1);
-										PORTB &= ~(1<<PD1);
+										PORTB &= ~(1<<PD3);
 									break;
 								
 								case 3:	DDRA |= (1<<PD2);
-										DDRB |= (1<<PD1);
+										DDRB |= (1<<PD3);
 											
 										PORTA |= (1<<PD2);
-										PORTB &= ~(1<<PD1);
+										PORTB &= ~(1<<PD3);
 									break;
 								
 								case 4:	DDRA |= (1<<PD3);
-										DDRB |= (1<<PD1);
+										DDRB |= (1<<PD3);
 											
 										PORTA |= (1<<PD3);
-										PORTB &= ~(1<<PD1);
+										PORTB &= ~(1<<PD3);
 									break;
 								
 								case 5:	DDRA |= (1<<PD4);
-										DDRB |= (1<<PD1);
+										DDRB |= (1<<PD3);
 											
 										PORTA |= (1<<PD4);
-										PORTB &= ~(1<<PD1);
+										PORTB &= ~(1<<PD3);
 									break;
 							}
 						break;
@@ -947,38 +1020,38 @@ void led(char y, char x, char z)
 					case 4:	switch(z)
 							{
 								case 1:	DDRA |= (1<<PD0);
-										DDRB |= (1<<PD3);
+										DDRB |= (1<<PD1);
 											
 										PORTA |= (1<<PD0);
-										PORTB &= ~(1<<PD3);
+										PORTB &= ~(1<<PD1);
 									break;
 								
 								case 2:	DDRA |= (1<<PD1);
-										DDRB |= (1<<PD3);
+										DDRB |= (1<<PD1);
 											
 										PORTA |= (1<<PD1);
-										PORTB &= ~(1<<PD3);
+										PORTB &= ~(1<<PD1);
 									break;
 								
 								case 3:	DDRA |= (1<<PD2);
-										DDRB |= (1<<PD3);
+										DDRB |= (1<<PD1);
 											
 										PORTA |= (1<<PD2);
-										PORTB &= ~(1<<PD3);
+										PORTB &= ~(1<<PD1);
 									break;
 								
 								case 4:	DDRA |= (1<<PD3);
-										DDRB |= (1<<PD3);
+										DDRB |= (1<<PD1);
 											
 										PORTA |= (1<<PD3);
-										PORTB &= ~(1<<PD3);
+										PORTB &= ~(1<<PD1);
 									break;
 								
 								case 5:	DDRA |= (1<<PD4);
-										DDRB |= (1<<PD3);
+										DDRB |= (1<<PD1);
 											
 										PORTA |= (1<<PD4);
-										PORTB &= ~(1<<PD3);
+										PORTB &= ~(1<<PD1);
 									break;
 							}
 						break;
@@ -986,38 +1059,38 @@ void led(char y, char x, char z)
 					case 5:	switch(z)
 							{
 								case 1:	DDRA |= (1<<PD0);
-										DDRB |= (1<<PD4);
+										DDRB |= (1<<PD0);
 											
 										PORTA |= (1<<PD0);
-										PORTB &= ~(1<<PD4);
+										PORTB &= ~(1<<PD0);
 									break;
 								
 								case 2:	DDRA |= (1<<PD1);
-										DDRB |= (1<<PD4);
+										DDRB |= (1<<PD0);
 											
 										PORTA |= (1<<PD1);
-										PORTB &= ~(1<<PD4);
+										PORTB &= ~(1<<PD0);
 									break;
 								
 								case 3:	DDRA |= (1<<PD2);
-										DDRB |= (1<<PD4);
+										DDRB |= (1<<PD0);
 											
 										PORTA |= (1<<PD2);
-										PORTB &= ~(1<<PD4);
+										PORTB &= ~(1<<PD0);
 									break;
 								
 								case 4:	DDRA |= (1<<PD3);
-										DDRB |= (1<<PD4);
+										DDRB |= (1<<PD0);
 											
 										PORTA |= (1<<PD3);
-										PORTB &= ~(1<<PD4);
+										PORTB &= ~(1<<PD0);
 									break;
 								
 								case 5:	DDRA |= (1<<PD4);
-										DDRB |= (1<<PD4);
+										DDRB |= (1<<PD0);
 											
 										PORTA |= (1<<PD4);
-										PORTB &= ~(1<<PD4);
+										PORTB &= ~(1<<PD0);
 									break;
 							}
 						break;
@@ -1025,9 +1098,6 @@ void led(char y, char x, char z)
 			break;
 	}
 }
-
-
-
 void acer(char a)
 {
 
@@ -1546,4 +1616,472 @@ void linex(char y, char x)
 			break;
 					
 	}
+ }
+
+void liney(char z, char x)
+{	
+	switch(z)
+	{
+		case 1:	switch(x)
+				{
+					case 1:	led(1,1,1);
+							led(2,1,1);
+							led(3,1,1);
+							led(4,1,1);
+							led(5,1,1);
+							
+						break;
+					
+					case 2:	led(1,2,1);
+							led(2,2,1);
+							led(3,2,1);
+							led(4,2,1);
+							led(5,2,1);
+						break;
+					
+					case 3:	led(1,3,1);
+							led(2,3,1);
+							led(3,3,1);
+							led(4,3,1);
+							led(5,3,1);
+						break;
+					
+					case 4:	led(1,4,1);
+							led(2,4,1);
+							led(3,4,1);
+							led(4,4,1);
+							led(5,4,1);
+						break;
+					
+					case 5:	led(1,5,1);
+							led(2,5,1);
+							led(3,5,1);
+							led(4,5,1);
+							led(5,5,1);
+						break;
+						
+				}
+				
+			break;
+		
+		case 2:	switch(x)
+				{
+					case 1:	led(1,1,2);
+							led(2,1,2);
+							led(3,1,2);
+							led(4,1,2);
+							led(5,1,2);
+						break;
+					
+					case 2:	led(1,2,2);
+							led(2,2,2);
+							led(3,2,2);
+							led(4,2,2);
+							led(5,2,2);
+						break;
+					
+					case 3:	led(1,3,2);
+							led(2,3,2);
+							led(3,3,2);
+							led(4,3,2);
+							led(5,3,2);
+						break;
+					
+					case 4:	led(1,4,2);
+							led(2,4,2);
+							led(3,4,2);
+							led(4,4,2);
+							led(5,4,2);
+						break;
+					
+					case 5:	led(1,5,2);
+							led(2,5,2);
+							led(3,5,2);
+							led(4,5,2);
+							led(5,5,2);
+						break;
+						
+				}
+				
+			break;
+		
+		case 3:	switch(x)
+				{
+					case 1:	led(1,1,3);
+							led(2,1,3);
+							led(3,1,3);
+							led(4,1,3);
+							led(5,1,3);
+						break;
+					
+					case 2:	led(1,2,3);
+							led(2,2,3);
+							led(3,2,3);
+							led(4,2,3);
+							led(5,2,3);
+						break;
+					
+					case 3:	led(1,3,3);
+							led(2,3,3);
+							led(3,3,3);
+							led(4,3,3);
+							led(5,3,3);
+						break;
+					
+					case 4:	led(1,4,3);
+							led(2,4,3);
+							led(3,4,3);
+							led(4,4,3);
+							led(5,4,3);
+						break;
+					
+					case 5:	led(1,5,3);
+							led(2,5,3);
+							led(3,5,3);
+							led(4,5,3);
+							led(5,5,3);
+						break;
+						
+				}
+				
+			break;
+		
+		case 4:	switch(x)
+				{
+					case 1:	led(1,1,4);
+							led(2,1,4);
+							led(3,1,4);
+							led(4,1,4);
+							led(5,1,4);
+						break;
+					
+					case 2:	led(1,2,4);
+							led(2,2,4);
+							led(3,2,4);
+							led(4,2,4);
+							led(5,2,4);
+						break;
+					
+					case 3:	led(1,3,4);
+							led(2,3,4);
+							led(3,3,4);
+							led(4,3,4);
+							led(5,3,4);
+						break;
+					
+					case 4:	led(1,4,4);
+							led(2,4,4);
+							led(3,4,4);
+							led(4,4,4);
+							led(5,4,4);
+						break;
+					
+					case 5:	led(1,5,4);
+							led(2,5,4);
+							led(3,5,4);
+							led(4,5,4);
+							led(5,5,4);
+						break;
+						
+				}
+				
+			break;
+		
+		case 5:	switch(x)
+				{
+					case 1:	led(1,1,5);
+							led(2,1,5);
+							led(3,1,5);
+							led(4,1,5);
+							led(5,1,5);
+						break;
+					
+					case 2:	led(1,2,5);
+							led(2,2,5);
+							led(3,2,5);
+							led(4,2,5);
+							led(5,2,5);
+						break;
+					
+					case 3:	led(1,3,5);
+							led(2,3,5);
+							led(3,3,5);
+							led(4,3,5);
+							led(5,3,5);
+						break;
+					
+					case 4:	led(1,4,5);
+							led(2,4,5);
+							led(3,4,5);
+							led(4,4,5);
+							led(5,4,5);
+						break;
+					
+					case 5:	led(1,5,5);
+							led(2,5,5);
+							led(3,5,5);
+							led(4,5,5);
+							led(5,5,5);
+						break;
+					
+				}
+				
+			break;
+					
+	}
+}
+void rundlauf(long w)
+{
+	long op = 0;
+	long q;
+	switch(w)
+	{
+		case 1:	q = 8000;
+			break;
+			
+		case 2:	q = 4500;
+			break;
+			
+		case 3:	q = 2000;
+			break;
+			
+		case 4:	q = 1100;
+			break;
+			
+		case 5:	q = 700;
+			break;
+			
+			
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(1,1);
+	}			
+	
+	for(op = 0; op < q; op++)
+	{			
+		liney(1,2);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(1,3);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(1,4);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(1,5);
+	}			
+	
+	for(op = 0; op < q; op++)
+	{			
+		liney(2,5);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(3,5);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(4,5);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(5,5);
+	}			
+	
+	for(op = 0; op < q; op++)
+	{			
+		liney(5,4);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(5,3);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(5,2);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(5,1);
+	}			
+	
+	for(op = 0; op < q; op++)
+	{			
+		liney(4,1);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(3,1);
+	}
+	
+	for(op = 0; op < q; op++)
+	{
+		liney(2,1);
+	}
+}
+void lift(long y)
+{
+	long op = 0;
+	long x;
+	
+	switch(y)
+	{
+		case 1:	x = 150000;
+		
+				for(op = 0; op < x; op++)
+				{
+					acer(1);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(2);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(3);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(4);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(5);
+				}
+			break;
+		
+		case 2:	x = 75000;
+		
+				for(op = 0; op < x; op++)
+				{
+					acer(1);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(2);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(3);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(4);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(5);
+				}
+			break;
+		
+		case 3:	x = 45000;
+		
+				for(op = 0; op < x; op++)
+				{
+					acer(1);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(2);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(3);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(4);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(5);
+				}
+			break;
+		
+		case 4:	x = 32000;
+		
+				for(op = 0; op < x; op++)
+				{
+					acer(1);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(2);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(3);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(4);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(5);
+				}
+			break;
+		
+		case 5:	x = 20000;
+		
+				for(op = 0; op < x; op++)
+				{
+					acer(1);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(2);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(3);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(4);
+				}
+	
+				for(op = 0; op < x; op++)
+				{
+					acer(5);
+				}
+			break;
+	}
+
+
+	
 }
