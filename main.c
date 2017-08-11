@@ -16,7 +16,8 @@ void cube(char s);							//würffel im würffel
 void return1(char z);						//fläche zurück zihen
 void downstep(char z);						//Y türmen
 void abbau(char z);							//Y abbauen 
-void spring(void);				
+void spring(void);							//Federartiger aufstieg
+void gift(void);
 
 #ifndef F_CPU
 #define F_CPU    20000000
@@ -40,6 +41,11 @@ void spring(void);
 
 uint8_t ms, ms10, ms100, sec ;
 char t;
+char t1;
+char t2;
+int dauer = 7;		//spring
+int dauer1 = 1;
+int dauer2 = 2;		//cube
 
 ISR(TIMER1_COMPA_vect)
 {
@@ -56,14 +62,15 @@ ISR(TIMER1_COMPA_vect)
 	{
 		ms = 0;
 		ms10++;
+		t++;
 	}
 	
 	if(ms10==10)									//Alle 100ms
 	{
 		ms10 = 0;
 		ms100++;
-		t++;
-
+		t1++;
+		t2++;
 	}
 	
 	
@@ -90,6 +97,8 @@ int main(void)
 	ms100 = 0;				//deklarieren
 	sec = 0;
 	t = 0;
+	t1 = 0;
+	t2 = 0;
 		
 TCCR1A = 0;					// Timer1: keine PWM
 
@@ -123,7 +132,7 @@ TCCR1A = 0;					// Timer1: keine PWM
 	{
 		char u = 0;
 			
-			lift(3);
+		/*	lift(3);
 			return1(1);	
 			downstep(1);
 			
@@ -134,9 +143,9 @@ TCCR1A = 0;					// Timer1: keine PWM
 			}
 			
 			abbau(1);		
-			t = 0;
 			spring();
-			cube(2);
+			cube(2);*/
+			gift();
 			
 	}//end of while
 	return 0;
@@ -2137,208 +2146,406 @@ void lift(long y)
 }
 void cube(char s)
 {
-	long op = 0;
-	long x;
 	
 	switch(s)
 	{
-		case 1:	x = 20000;
+		case 1:	while(t1<dauer1)
+					{
+						led(5,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
 			break;
 			
-		case 2:	x = 4500;
-			break;
+		case 2:	while(t1<dauer1)
+				{
+					led(5,3,3);
+				} t1 =0;
+				
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						led(5,3,3);
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+				while(t1<dauer1)
+					{
+						
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+				{
+					led(1,3,3);
+				} t1 =0;
+			break;		
 			
-		case 3:	x = 2000;
+		case 3:	while(t1<dauer1)
+					{
+						led(5,3,3);
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						
+						
+						led(4,2,3);
+						led(4,4,3);
+						led(4,3,4);
+						led(4,3,2);
+						led(4,3,3);
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+				while(t1<dauer1)
+					{
+						
+						
+						led(3,1,3);
+						led(3,2,3);
+						led(3,3,3);
+						led(3,4,3);
+						led(3,5,3);
+						led(3,3,1);
+						led(3,3,2);
+						led(3,3,4);
+						led(3,3,5);
+						led(3,2,4);
+						led(3,2,2);
+						led(3,4,4);
+						led(3,4,2);
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+					{
+						
+						led(2,2,3);
+						led(2,4,3);
+						led(2,3,4);
+						led(2,3,2);
+						led(2,3,3);
+						
+						led(1,3,3);
+					} t1 =0;
+					
+				while(t1<dauer1)
+				{
+					led(1,3,3);
+				} t1 =0;
 			break;
-			
-		case 4:	x = 1100;
-			break;
-			
-		case 5:	x = 700;
-			break;
-			
 			
 	}
-	
-	for(op = -40000; op < x; op++)
-		{
-			led(5,3,3);
-		}
-		
-	for(op = -5000; op < x; op++)
-		{
-			led(5,3,3);
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-		}
-		
-	for(op = -500; op < x; op++)
-		{
-			led(5,3,3);
-			
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-		}
-		
-	for(op = -400; op < x; op++)
-		{
-			led(5,3,3);
-			
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-			
-			led(2,2,3);
-			led(2,4,3);
-			led(2,3,4);
-			led(2,3,2);
-			led(2,3,3);
-		}
-		
-	for(op = 0; op < x; op++)
-		{
-			led(5,3,3);
-			
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-			
-			led(2,2,3);
-			led(2,4,3);
-			led(2,3,4);
-			led(2,3,2);
-			led(2,3,3);
-			
-			led(1,3,3);
-		}
-		
-	for(op = -400; op < x; op++)
-		{
-			
-			
-			led(4,2,3);
-			led(4,4,3);
-			led(4,3,4);
-			led(4,3,2);
-			led(4,3,3);
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-			
-			led(2,2,3);
-			led(2,4,3);
-			led(2,3,4);
-			led(2,3,2);
-			led(2,3,3);
-			
-			led(1,3,3);
-		}
-	for(op = -500; op < x; op++)
-		{
-			
-			
-			led(3,1,3);
-			led(3,2,3);
-			led(3,3,3);
-			led(3,4,3);
-			led(3,5,3);
-			led(3,3,1);
-			led(3,3,2);
-			led(3,3,4);
-			led(3,3,5);
-			led(3,2,4);
-			led(3,2,2);
-			led(3,4,4);
-			led(3,4,2);
-			
-			led(2,2,3);
-			led(2,4,3);
-			led(2,3,4);
-			led(2,3,2);
-			led(2,3,3);
-			
-			led(1,3,3);
-		}
-		
-	for(op = -5000; op < x; op++)
-		{
-			
-			led(2,2,3);
-			led(2,4,3);
-			led(2,3,4);
-			led(2,3,2);
-			led(2,3,3);
-			
-			led(1,3,3);
-		}
-		
-	for(op = -40000; op < x; op++)
-		{
-			led(1,3,3);
-		}
 
 }
 void return1(char z)
@@ -2478,773 +2685,1004 @@ void abbau(char z)
 }
 void spring(void)
 {
-	int x = 1;
-
-	{while(t<x)		//Fläche 1
+	t = 0;
+	
+	{while(t<dauer)		//Fläche 1
 	{
 		led(1,1,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,2,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,3,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,4,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,5,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,5,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,5,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,5,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,5,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,4,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,3,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,2,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,1,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,1,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,1,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,1,2);
+	}t = 0;
+	 
 	}
-	x++;
-	}
 	
 	
 	
-	{while(t<x)		//Fläche 2
+	{while(t<dauer)		//Fläche 2
 	{
 		led(2,1,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,2,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,3,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,4,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,5,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,5,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,5,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,5,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,5,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,4,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,3,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,2,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,1,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,1,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,1,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,1,2);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 			
 				
-	{while(t<x)		//Fläche 3
+	{while(t<dauer)		//Fläche 3
 	{
 		led(3,1,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,2,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,3,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,4,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,5,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,5,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,5,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,5,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,5,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,4,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,3,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,2,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,1,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,1,4);
-	}x++;
+	}t = 0; 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,1,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,1,2);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 
-	{while(t<x)		//Fläche 4
+	{while(t<dauer)		//Fläche 4
 	{
 		led(4,1,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,2,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,3,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,4,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,5,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,5,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,5,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,5,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,5,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,4,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,3,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,2,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,1,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,1,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,1,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,1,2);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 
-	{while(t<x)		//Fläche 5
+	{while(t<dauer)		//Fläche 5
 	{
 		led(5,1,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,2,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,3,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,4,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,5,1);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,5,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,5,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,5,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,5,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,4,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,3,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,2,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,1,5);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,1,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,1,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,1,2);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 
-	{while(t<x)		//Fläche 5 o
+	{while(t<dauer)		//Fläche 5 o
 	{
 		led(5,2,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,3,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,4,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,4,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,4,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,3,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,2,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(5,2,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 4 o
+	{while(t<dauer)		//Fläche 4 o
 	{
 		led(4,2,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,3,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,4,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,4,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,4,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,3,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,2,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(4,2,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 3 o
+	{while(t<dauer)		//Fläche 3 o
 	{
 		led(3,2,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,3,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,4,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,4,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,4,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,3,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,2,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(3,2,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 2 o
+	{while(t<dauer)		//Fläche 2 o
 	{
 		led(2,2,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,3,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,4,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,4,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,4,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,3,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,2,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(2,2,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 1 o
+	{while(t<dauer)		//Fläche 1 o
 	{
 		led(1,2,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,3,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,4,2);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,4,3);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,4,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,3,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,2,4);
-	}
-	x++;
+	}t = 0;
+	 
 	
-	while(t<x)
+	while(t<dauer)
 	{
 		led(1,2,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 1 i
+	{while(t<dauer)		//Fläche 1 i
 	{
 		led(1,3,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 2 i
+	{while(t<dauer)		//Fläche 2 i
 	{
 		led(2,3,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 3 i
+	{while(t<dauer)		//Fläche 3 i
 	{
 		led(3,3,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 4 i
+	{while(t<dauer)		//Fläche 4 i
 	{
 		led(4,3,3);
-	}
-	x++;
+	}t = 0;
+	 
 	}
 	
-	{while(t<x)		//Fläche 5 i
+	{while(t<dauer)		//Fläche 5 i
 	{
 		led(5,3,3);
-	}
-	x++;
-	}
-	
+	}t = 0;
+	 
+	}t = 0;	
 }
+void gift(void)
+{
+	t2 =0;
+	
+	while(t2<dauer2)
+		{
+			led(1,3,3);
+		}t2 =0;
+		
+	while(t2<dauer2)
+		{
+			led(1,3,3);
+			led(1,3,4);
+			led(1,3,2);
+			led(1,2,3);
+			led(1,4,3);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+			led(1,3,4);
+			led(1,3,2);
+			led(1,2,3);
+			led(1,4,3);
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+			led(1,3,3);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+			led(1,3,4);
+			led(1,3,2);
+			led(1,2,3);
+			led(1,4,3);
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+			led(1,5,4);
+			led(1,5,2);
+			led(1,2,1);
+			led(1,4,1);
+			led(1,1,2);
+			led(1,1,4);
+			led(1,2,5);
+			led(1,4,5);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+			led(1,5,4);
+			led(1,5,2);
+			led(1,2,1);
+			led(1,4,1);
+			led(1,1,2);
+			led(1,1,4);
+			led(1,2,5);
+			led(1,4,5);
+			led(1,1,1);
+			led(1,5,1);
+			led(1,1,5);
+			led(1,5,5);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+		
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+			led(1,5,4);
+			led(1,5,2);
+			led(1,2,1);
+			led(1,4,1);
+			led(1,1,2);
+			led(1,1,4);
+			led(1,2,5);
+			led(1,4,5);
+			led(1,1,1);
+			led(1,5,1);
+			led(1,1,5);
+			led(1,5,5);
+			
+			led(2,3,5);
+			led(2,3,1);
+			led(2,1,3);
+			led(2,5,3);
+			led(2,5,4);
+			led(2,5,2);
+			led(2,2,1);
+			led(2,4,1);
+			led(2,1,2);
+			led(2,1,4);
+			led(2,2,5);
+			led(2,4,5);
+			led(2,1,1);
+			led(2,5,1);
+			led(2,1,5);
+			led(2,5,5);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+		
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+			led(1,5,4);
+			led(1,5,2);
+			led(1,2,1);
+			led(1,4,1);
+			led(1,1,2);
+			led(1,1,4);
+			led(1,2,5);
+			led(1,4,5);
+			led(1,1,1);
+			led(1,5,1);
+			led(1,1,5);
+			led(1,5,5);
+			
+			led(3,3,5);
+			led(3,3,1);
+			led(3,1,3);
+			led(3,5,3);
+			led(3,5,4);
+			led(3,5,2);
+			led(3,2,1);
+			led(3,4,1);
+			led(3,1,2);
+			led(3,1,4);
+			led(3,2,5);
+			led(3,4,5);
+			led(3,1,1);
+			led(3,5,1);
+			led(3,1,5);
+			led(3,5,5);
+			
+			led(2,1,1);
+			led(2,5,1);
+			led(2,1,5);
+			led(2,5,5);
+		} t2 =0;
+		
+	while(t2<dauer2)
+		{
+		
+			led(1,3,5);
+			led(1,3,1);
+			led(1,1,3);
+			led(1,5,3);
+			led(1,5,4);
+			led(1,5,2);
+			led(1,2,1);
+			led(1,4,1);
+			led(1,1,2);
+			led(1,1,4);
+			led(1,2,5);
+			led(1,4,5);
+			led(1,1,1);
+			led(1,5,1);
+			led(1,1,5);
+			led(1,5,5);
+			
+			led(4,3,5);
+			led(4,3,1);
+			led(4,1,3);
+			led(4,5,3);
+			led(4,5,4);
+			led(4,5,2);
+			led(4,2,1);
+			led(4,4,1);
+			led(4,1,2);
+			led(4,1,4);
+			led(4,2,5);
+			led(4,4,5);
+			led(4,1,1);
+			led(4,5,1);
+			led(4,1,5);
+			led(4,5,5);
+			
+			led(2,1,1);
+			led(2,5,1);
+			led(2,1,5);
+			led(2,5,5);
+			
+			led(3,1,1);
+			led(3,5,1);
+			led(3,1,5);
+			led(3,5,5);
+		} t2 =0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
