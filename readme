@@ -2,5 +2,13 @@
 
 
 LED_Cube Projekt
-
 start: 7.8.2017
+
+5x5x5 Leds
+Atmega644P
+
+PortA Pin 0-4 VCC and PortD Pin 3-7 ground = acer1
+PortD Pin 3-7 VCC and PortA Pin 0-4 ground = acer2
+PortA Pin 0-4 VCC and PortC Pin 3-7 ground = acer3
+PortC Pin 3-7 VCC and PortA Pin 0-4 ground = acer4
+PortA Pin 0-4 VCC and PortB Pin 0-4 ground = acer5
